@@ -4,6 +4,10 @@ import { userService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
 
+export const userActions = {
+    login,
+    logout,
+};
 function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));

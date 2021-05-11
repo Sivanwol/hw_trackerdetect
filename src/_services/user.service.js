@@ -1,9 +1,8 @@
 import config from '../settings';
-import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
-    logout,
+    logout
 };
 
 function login(username, password) {
@@ -15,11 +14,11 @@ function login(username, password) {
 
     return fetch(`${config.backend_api}/login`, requestOptions)
         .then(handleResponse)
-        .then(user => {
+        .then(data => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('user', JSON.stringify(data.rows[0]));
 
-            return user;
+            return data[0];
         });
 }
 

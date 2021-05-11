@@ -1,42 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-  useLocation,
-  Link
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link, Redirect
 } from "react-router-dom";
 import {PrivateRoute} from "../_components";
+import {history} from '../_helpers';
 import {Login} from "../Pages/Login";
-function App() {
-  return (
+import {Home} from "../Pages/Home";
+import {Component} from "react";
+import {alertActions} from "../_actions";
+import {connect} from "react-redux";
 
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-            </ul>
-          </nav>
+class App extends Component {
+    constructor(props) {
+        super(props);
 
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <PrivateRoute path="/home">
-              <Home />
-            </PrivateRoute>
-          </Switch>
-        </div>
-      </Router>
-  );
+        history.listen((location, action) => {
+            // clear alert on location change
+            this.props.clearAlerts();
+        });
+    }
+
+    render() {
+        return (
+            <div className="jumbotron">
+                <div className="container">
+                    <div className="col-sm-8 col-sm-offset-2">
+                        {alert.message &&
+                        <div className={`alert ${alert.type}`}>{alert.message}</div>
+                        }
+                        <Router history={history}>
+                            <Switch>
+                                <PrivateRoute exact path="/" component={Home}/>
+                                <Route path="/login" component={Login}/>
+                                <Redirect from="*" to="/"/>
+                            </Switch>
+                        </Router>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;
+
+function mapState(state) {
+    const {alert} = state;
+    return {alert};
+}
+
+const actionCreators = {
+    clearAlerts: alertActions.clear
+};
+
+const connectedApp = connect(mapState, actionCreators)(App);
+export {connectedApp as App};

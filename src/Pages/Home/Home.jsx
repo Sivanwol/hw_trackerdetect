@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { userActions } from '../../_actions';
+import {history} from "../../_helpers";
 
 class Home extends React.Component {
     constructor(props) {
@@ -15,6 +16,8 @@ class Home extends React.Component {
 
         this.setState({ submitted: true });
         this.props.logout();
+
+        history.push('/login');
     }
 
     render() {
