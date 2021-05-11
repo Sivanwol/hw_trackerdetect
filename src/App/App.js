@@ -9,6 +9,8 @@ import {
   useLocation,
   Link
 } from "react-router-dom";
+import {PrivateRoute} from "../_components";
+import {Login} from "../Pages/Login";
 function App() {
   return (
 
@@ -29,7 +31,7 @@ function App() {
               <Login />
             </Route>
             <PrivateRoute path="/home">
-              <ProtectedPage />
+              <Home />
             </PrivateRoute>
           </Switch>
         </div>
