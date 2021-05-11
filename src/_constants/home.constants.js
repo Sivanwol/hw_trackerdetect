@@ -1,0 +1,12 @@
+export const homeConstants = {
+    HOME_REQUEST: 'HOME_REQUEST',
+    HOME_SUCCESS: 'HOME_SUCCESS',
+    HOME_FAILURE: 'HOME_FAILURE',
+
+    Create_Segment_REQUEST: 'CREATE_SEGMENT_REQUEST',
+    Create_Segment_SUCCESS: 'CREATE_SEGMENT_SUCCESS',
+    Create_Segment_FAILURE: 'CREATE_SEGMENT_FAILURE',
+
+    LOGOUT: 'USERS_LOGOUT',
+
+};
