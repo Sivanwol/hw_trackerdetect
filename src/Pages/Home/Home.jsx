@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import { userActions } from '../../_actions';
 import {history} from "../../_helpers";
+import {segmentsService} from "../../_services";
+import {segmentsActions} from "../../_actions/segments.actions";
+import {segments} from "../../_reducers/segments.reducer";
 
 class Home extends React.Component {
     constructor(props) {
@@ -11,6 +14,9 @@ class Home extends React.Component {
     }
 
 
+    componentDidMount() {
+        this.props.get_all_segments();
+    }
     handleLogout(e) {
         e.preventDefault();
 
@@ -24,7 +30,7 @@ class Home extends React.Component {
         return (
             <div>
                 <h1>Logged</h1>
-                <a href="javascript:void(0)" onClick={this.handleLogout}>Logout</a>
+                <a onClick={this.handleLogout}>Logout</a>
             </div>
         );
     }
@@ -32,11 +38,16 @@ class Home extends React.Component {
 
 function mapState(state) {
     const { loggingIn } = state.authentication;
-    return { loggingIn };
+    const { segments_items } = state.segments;
+
+    return {
+        segments_items,
+        loggingIn
+    };
 }
 
 const actionCreators = {
-    login: userActions.login,
+    get_all_segments: segmentsActions.get_all_segments,
     logout: userActions.logout
 };
 
