@@ -47,5 +47,5 @@ function create_segments(name, description) {
 
     function failure(error) {return {type: segmentsConstants.Create_Segment_FAILURE, error} }
     function success(items) {return {type: segmentsConstants.Create_Segment_SUCCESS, items} }
-    function request(name, description) {return {type: segmentsConstants.Create_Segment_REQUEST}, name, description }
+    function request(name, description) {return {type: segmentsConstants.Create_Segment_REQUEST, name, description} }
 }

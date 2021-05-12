@@ -23,7 +23,7 @@ function create_segments(name, description) {
     const requestOptions = {
         method: 'POST',
         headers: authHeader(),
-        body: JSON.stringify({ name, description })
+        body: JSON.stringify({ name, description, extra: {} })
     };
 
     return fetch(`${config.backend_api}/scenarios`, requestOptions)
