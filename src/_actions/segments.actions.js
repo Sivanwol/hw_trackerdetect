@@ -30,7 +30,7 @@ function get_all_segments() {
 
 function create_segments(name, description) {
     return dispatch => {
-        dispatch(request());
+        dispatch(request(name, description));
 
         segmentsService.create_segments(name, description)
             .then(
