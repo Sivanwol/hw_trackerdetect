@@ -1,6 +1,6 @@
 import './App.css';
 import {
-    BrowserRouter as Router,
+    Router ,
     Switch,
     Route,
     Link, Redirect
@@ -33,9 +33,9 @@ class App extends Component {
                         }
                         <Router history={history}>
                             <Switch>
-                                <PrivateRoute exact path="/" component={Home}/>
+                                <PrivateRoute exact path="/home" component={Home}/>
                                 <Route path="/login" component={Login}/>
-                                <Redirect from="*" to="/"/>
+                                <Redirect from="*" to="/home"/>
                             </Switch>
                         </Router>
                     </div>
