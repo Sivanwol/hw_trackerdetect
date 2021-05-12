@@ -18,6 +18,16 @@ export function segments(state = initialState, action) {
             return {
                 segments_items: []
             };
+        case segmentsConstants.Create_Segment_REQUEST:
+            return {
+                segments_items: action.items
+            };
+        case segmentsConstants.Create_Segment_SUCCESS:
+            return {
+                segments_items: action.items
+            };
+        case segmentsConstants.Create_Segment_FAILURE:
+            return state;
         default:
             return state
     }
